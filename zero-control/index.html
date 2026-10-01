@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zero Control by Suraj Mavuleti | dev//zero</title>
+  <meta name="description" content="Zero Control is a free, lightweight remote desktop for Windows, Linux and Android, built by Suraj Mavuleti.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zero Control by Suraj Mavuleti | dev//zero">
+  <meta property="og:description" content="Zero Control is a free, lightweight remote desktop for Windows, Linux and Android, built by Suraj Mavuleti.">
+  <meta property="og:url" content="https://zero.skillissue.gg/zero-control">
+  <meta property="og:image" content="https://zero.skillissue.gg/assets/logo.png">
+  <link rel="canonical" href="https://zero.skillissue.gg/zero-control" />
+  <meta name="author" content="Suraj Mavuleti">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://zero.skillissue.gg/zero-control#software",
+  "name": "Zero Control",
+  "url": "https://zero.skillissue.gg/zero-control",
+  "description": "Zero Control is a free, lightweight remote desktop for Windows, Linux and Android, built by Suraj Mavuleti.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows, Linux, Android",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://zero.skillissue.gg/#person",
+    "name": "Suraj Mavuleti",
+    "alternateName": "Dev Zero",
+    "url": "https://zero.skillissue.gg/",
+    "sameAs": [
+      "https://www.linkedin.com/in/suraj-mavuleti-b95993320",
+      "https://github.com/Suraj-Mavuleti"
+    ]
+  },
+  "creator": {
+    "@id": "https://zero.skillissue.gg/#person"
+  }
+}
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/zero-control/icon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- The main site's design system (served from the same origin) -->
+  <link rel="stylesheet" href="/styles/main.css?v=34" />
+  <link rel="stylesheet" href="/zero-control/zc.css?v=1" />
+  <script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body data-theme="dark">
+  <div class="parallax-bg" id="parallaxBg"></div>
+  <canvas id="matrixCanvas"></canvas>
+  <div class="zm-container">
+    <div class="nav-top gs-reveal">
+      <a href="/zero-control" class="brand magnetic">devzero<span>/zero-control</span></a>
+      <div class="nav-links">
+        <a class="get-app magnetic" data-download href="/zero-control"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span data-download-label>Download</span></a>
+        <a href="/zero-control/releases" class="magnetic hide-sm">release notes</a>
+        <a href="/wiki" class="back-btn magnetic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Return to Core</a>
+      </div>
+    </div>
+    <div class="hero gs-reveal">
+      <img class="app-icon" src="/zero-control/icon.svg" alt="Zero Control icon">
+      <h1 data-scramble>Zero Control</h1>
+    </div>
+    <div class="meta gs-reveal">Windows // Linux // Android // Free // Status: Active</div>
+    <p class="zm-lead gs-reveal">A lightweight remote desktop. Share a 9-digit ID and a password, and control one device from another over the internet, between Windows, Linux and Android in any combination.</p>
+    <div class="actions gs-reveal">
+      <a class="btn btn-primary magnetic" data-download href="#all-downloads">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-download-label>Download</span>
+      </a>
+      <a class="btn btn-secondary magnetic" href="/zero-control/releases">Release notes</a>
+    </div>
+    <div class="version gs-reveal"><span id="version">Latest version</span></div>
+    <div class="other-os gs-reveal" id="all-downloads">Also for:
+      <a data-download="windows" href="/zero-control/download/ZeroControl-Setup.exe">Windows</a>
+      <a data-download="linux" href="/zero-control/download/zero-control-install.sh">Linux</a>
+      <a data-download="android" href="/zero-control/download/ZeroControl.apk">Android</a>
+    </div>
+    <div class="steps gs-reveal" data-os="windows"><strong>Windows:</strong> open <code>ZeroControl-Setup.exe</code> from your downloads. It installs for your user only, so no administrator prompt.</div>
+    <div class="steps gs-reveal" data-os="linux"><strong>Linux:</strong> open a terminal and run <code>sh ~/Downloads/zero-control-install.sh</code>. It installs to your home folder and tells you if a system package is missing.</div>
+    <div class="steps gs-reveal" data-os="android"><strong>Android:</strong> open <code>ZeroControl.apk</code> from the download notification and allow the install. To let another device tap and type on this phone (not just see it), the app offers a small input add-on under "Allow remote control".</div>
+
+    <div class="gs-reveal">
+      <div class="section-label">Features</div>
+      <div class="features">
+        <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Control any screen</h3><p>See another computer or phone and use its mouse and keyboard as if you were sitting at it.</p></div>
+        <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h3>Private by design</h3><p>Screen and input go straight between the two devices, encrypted. The password is never sent to any server.</p></div>
+        <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 13 9 20 9"/><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/></svg><h3>Drag and drop files</h3><p>Drop files or whole folders onto the session to send them to the other PC.</p></div>
+        <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><h3>Light</h3><p>About 25 MB of memory and no CPU while waiting. Video is encoded and decoded on the GPU.</p></div>
+        <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><h3>Unattended access</h3><p>Set a permanent password to reach your own machines when nobody is there.</p></div>
+        <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg><h3>Updates itself</h3><p>Checks for a new version every time it opens and installs it for you.</p></div>
+      </div>
+    </div>
+
+    <div class="gs-reveal">
+      <div class="section-label">How it works</div>
+      <p>Open Zero Control on both devices. The one to be controlled shows an ID and a password; type them into the other one. A small server only introduces the two devices to each other. After that they talk directly, so what is on your screen and what you type never passes through it.</p>
+      <p class="note">Only give your ID and password to people you trust: whoever has them can see and control your device until you close the app or generate a new password.</p>
+    </div>
+    <footer class="zm-footer gs-reveal">
+      <span>© 2026 devzero // Zero Control // built by <a href="/">Suraj Mavuleti</a></span>
+      <span><a href="/zero-control">home</a><a href="/zero-control/releases">release notes</a><a href="mailto:surajmavuleti@gmail.com">contact</a></span>
+    </footer>
+  </div>
+  <script src="/scripts/main.js?v=35"></script>
+  <script>
+    // Pick the right installer for the visitor's system; the file is served
+    // from this site, so the download starts without leaving the page.
+    const DOWNLOADS = {
+      windows: { label: "Download for Windows", href: "/zero-control/download/ZeroControl-Setup.exe", file: "ZeroControl-Setup.exe" },
+      linux: { label: "Download for Linux", href: "/zero-control/download/zero-control-install.sh", file: "zero-control-install.sh" },
+      android: { label: "Download for Android", href: "/zero-control/download/ZeroControl.apk", file: "ZeroControl.apk" },
+    };
+    const ua = navigator.userAgent;
+    const OS = /Android/i.test(ua) ? "android" : /Windows/i.test(ua) ? "windows" : /Linux|X11/i.test(ua) ? "linux" : null;
+    document.querySelectorAll("[data-download]").forEach(link => {
+      const choice = DOWNLOADS[link.dataset.download || OS];
+      if (!choice) return;
+      link.href = choice.href;
+      link.setAttribute("download", choice.file);
+      const label = link.querySelector("[data-download-label]");
+      if (label && !link.dataset.download) label.textContent = choice.label;
+      link.addEventListener("click", () => {
+        const os = link.dataset.download || OS;
+        document.querySelectorAll(".steps").forEach(s => s.classList.toggle("show", s.dataset.os === os));
+      });
+    });
+  </script>
+  <script>
+    // Show the current version under the buttons.
+    fetch("/zero-control/latest.json", { cache: "no-store" }).then(r => r.json()).then(feed => {
+      const asset = feed[OS];
+      const size = asset && asset.size ? " // " + (asset.size / 1048576).toFixed(1) + " MB" : "";
+      document.getElementById("version").textContent = "Version " + feed.version + size;
+    }).catch(() => {});
+    if (!OS) document.getElementById("version").insertAdjacentText("afterend", " // Pick your system below");
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof gsap !== "undefined") {
+        gsap.from(".gs-reveal", { y: 40, opacity: 0, duration: 1.2, stagger: 0.08, ease: "power4.out", delay: 0.2 });
+      }
+      document.querySelectorAll("[data-scramble]").forEach(el => {
+        const original = el.textContent;
+        const chars = "!<>-_\\/[]{}—=+*^?#________";
+        let iter = 0;
+        const interval = setInterval(() => {
+          el.textContent = original.split("").map((letter, i) => i < iter ? original[i] : chars[Math.floor(Math.random() * chars.length)]).join("");
+          if (iter >= original.length) clearInterval(interval);
+          iter += 1 / 3;
+        }, 30);
+      });
+    });
+  </script>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+</body>
+</html>

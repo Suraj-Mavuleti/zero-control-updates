@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release Notes | Zero Control | dev//zero</title>
+  <meta name="description" content="What changed in every version of Zero Control.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Release Notes | Zero Control | dev//zero">
+  <meta property="og:description" content="What changed in every version of Zero Control.">
+  <meta property="og:url" content="https://zero.skillissue.gg/zero-control/releases">
+  <meta property="og:image" content="https://zero.skillissue.gg/assets/logo.png">
+  <link rel="canonical" href="https://zero.skillissue.gg/zero-control/releases" />
+  <link rel="icon" type="image/svg+xml" href="/zero-control/icon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- The main site's design system (served from the same origin) -->
+  <link rel="stylesheet" href="/styles/main.css?v=34" />
+  <link rel="stylesheet" href="/zero-control/zc.css?v=1" />
+  <script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body data-theme="dark">
+  <div class="parallax-bg" id="parallaxBg"></div>
+  <canvas id="matrixCanvas"></canvas>
+  <div class="zm-container">
+    <div class="nav-top gs-reveal">
+      <a href="/zero-control" class="brand magnetic">devzero<span>/zero-control/releases</span></a>
+      <div class="nav-links">
+        <a class="get-app magnetic" data-download href="/zero-control"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span data-download-label>Download</span></a>
+        <a href="/zero-control/releases" class="magnetic hide-sm">release notes</a>
+        <a href="/wiki" class="back-btn magnetic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Return to Core</a>
+      </div>
+    </div>
+    <h1 class="gs-reveal" data-scramble>Release Notes</h1>
+    <div class="meta gs-reveal">Every version, newest first // The app updates itself</div>
+    <div class="gs-reveal" id="releases"><p>Loading release notes…</p></div>
+    <footer class="zm-footer gs-reveal">
+      <span>© 2026 devzero // Zero Control</span>
+      <span><a href="/zero-control">home</a><a href="/zero-control/releases">release notes</a><a href="mailto:surajmavuleti@gmail.com">contact</a></span>
+    </footer>
+  </div>
+  <script src="/scripts/main.js?v=35"></script>
+  <script>
+    // Pick the right installer for the visitor's system; the file is served
+    // from this site, so the download starts without leaving the page.
+    const DOWNLOADS = {
+      windows: { label: "Download for Windows", href: "/zero-control/download/ZeroControl-Setup.exe", file: "ZeroControl-Setup.exe" },
+      linux: { label: "Download for Linux", href: "/zero-control/download/zero-control-install.sh", file: "zero-control-install.sh" },
+      android: { label: "Download for Android", href: "/zero-control/download/ZeroControl.apk", file: "ZeroControl.apk" },
+    };
+    const ua = navigator.userAgent;
+    const OS = /Android/i.test(ua) ? "android" : /Windows/i.test(ua) ? "windows" : /Linux|X11/i.test(ua) ? "linux" : null;
+    document.querySelectorAll("[data-download]").forEach(link => {
+      const choice = DOWNLOADS[link.dataset.download || OS];
+      if (!choice) return;
+      link.href = choice.href;
+      link.setAttribute("download", choice.file);
+      const label = link.querySelector("[data-download-label]");
+      if (label && !link.dataset.download) label.textContent = choice.label;
+      link.addEventListener("click", () => {
+        const os = link.dataset.download || OS;
+        document.querySelectorAll(".steps").forEach(s => s.classList.toggle("show", s.dataset.os === os));
+      });
+    });
+  </script>
+  <script>
+    (function () {
+      const esc = text => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const inline = text => esc(text).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      // Notes are plain text: "- " bullets (two spaces deeper for sub-points) and **bold**.
+      function render(notes) {
+        let out = "", depth = 0;
+        notes.split("\n").forEach(line => {
+          const bullet = line.match(/^(\s*)[-*]\s+(.*)$/);
+          if (bullet) {
+            const level = bullet[1].length >= 2 ? 2 : 1;
+            while (depth < level) { out += "<ul>"; depth++; }
+            while (depth > level) { out += "</ul>"; depth--; }
+            out += "<li>" + inline(bullet[2]) + "</li>";
+          } else if (line.trim()) {
+            while (depth > 0) { out += "</ul>"; depth--; }
+            out += "<p>" + inline(line.trim()) + "</p>";
+          }
+        });
+        while (depth > 0) { out += "</ul>"; depth--; }
+        return out;
+      }
+      const box = document.getElementById("releases");
+      fetch("/zero-control/releases.json", { cache: "no-store" }).then(r => r.json()).then(releases => {
+        box.innerHTML = releases.map((release, i) => {
+          const date = new Date(release.date).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+          return '<section class="release"><h2>Version ' + esc(release.version) + (i === 0 ? ' <span class="badge">Latest</span>' : "") +
+            '</h2><div class="date">' + date + "</div>" + render(release.notes) + "</section>";
+        }).join("");
+      }).catch(() => { box.innerHTML = "<p>Couldn't load the release notes. Check your connection and reload.</p>"; });
+    })();
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof gsap !== "undefined") {
+        gsap.from(".gs-reveal", { y: 40, opacity: 0, duration: 1.2, stagger: 0.08, ease: "power4.out", delay: 0.2 });
+      }
+      document.querySelectorAll("[data-scramble]").forEach(el => {
+        const original = el.textContent;
+        const chars = "!<>-_\\/[]{}—=+*^?#________";
+        let iter = 0;
+        const interval = setInterval(() => {
+          el.textContent = original.split("").map((letter, i) => i < iter ? original[i] : chars[Math.floor(Math.random() * chars.length)]).join("");
+          if (iter >= original.length) clearInterval(interval);
+          iter += 1 / 3;
+        }, 30);
+      });
+    });
+  </script>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+</body>
+</html>

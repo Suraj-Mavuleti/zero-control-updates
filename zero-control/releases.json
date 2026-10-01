@@ -1,0 +1,17 @@
+[
+  {
+    "version": "0.1.2",
+    "date": "2026-10-01T14:18:10Z",
+    "notes": "- **Android now installs**: Google Play Protect was blocking the app because it contained the service that lets another device tap and type on the phone. That part is now a separate, optional add-on, so the main app installs normally.\n- The add-on is offered inside the app under **Allow remote control**. Viewing a phone's screen and controlling other devices from a phone work without it."
+  },
+  {
+    "version": "0.1.1",
+    "date": "2026-10-01T12:09:39Z",
+    "notes": "- **Quieter reconnects**: if the server drops the connection, the app comes straight back without showing Offline.\n- **Linux**: after an update the app restarts in place.\n- Groundwork for the public server."
+  },
+  {
+    "version": "0.1.0",
+    "date": "2026-10-01T00:00:00Z",
+    "notes": "First release.\n- **Remote control** between Windows, Linux and Android: see the other screen, use its mouse and keyboard.\n- **ID and password**: every device gets a 9-digit ID and a one-time password. The password is checked directly between the two devices and never sent to a server.\n- **Peer-to-peer and encrypted**: screen and input travel straight between the devices.\n- **Drag and drop files and folders** from the controlling PC onto the session to send them to the controlled PC.\n- **Light**: about 25 MB of memory and no CPU while waiting for a connection; GPU video encoding and decoding during one.\n- **Unattended access** with a permanent password, and a windowless host mode.\n- **Updates itself** on every launch."
+  }
+]

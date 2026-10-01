@@ -1,0 +1,28 @@
+{
+  "version": "0.1.2",
+  "date": "2026-10-01T14:35:27Z",
+  "notes": "- **Android now installs**: Google Play Protect was blocking the app because it contained the service that lets another device tap and type on the phone. That part is now a separate, optional add-on, so the main app installs normally.\n- The add-on is offered inside the app under **Allow remote control**. Viewing a phone's screen and controlling other devices from a phone work without it.",
+  "server": "wss://zero-control-signal.vercel.app/api/ws",
+  "linux": {
+    "url": "https://suraj-mavuleti.github.io/zero-control-updates/zero-control/download/zero-control-linux-x86_64",
+    "sha256": "dd2ef955d04b01fda20fcc91dcadd8d358c347567f5f6b25db4973e5317a216d",
+    "size": 14666328
+  },
+  "windows": {
+    "url": "https://suraj-mavuleti.github.io/zero-control-updates/zero-control/download/ZeroControl-Setup.exe",
+    "sha256": "a327a46c5e152faa51274b3497807a076400d5e0e694fdd5e8c642c425db6825",
+    "size": 43625930
+  },
+  "android": {
+    "url": "https://suraj-mavuleti.github.io/zero-control-updates/zero-control/download/ZeroControl.apk",
+    "sha256": "c1afdb8fe97e6406c627fe8c8dee687ba53ab5f897303a71a453880d452872bd",
+    "size": 39950762,
+    "versionCode": 3
+  },
+  "android_input": {
+    "url": "https://suraj-mavuleti.github.io/zero-control-updates/zero-control/download/ZeroControl-Input.apk",
+    "sha256": "4912b3802c46563dba7dc2532ad4420a47555e4ad47abea564714b6597e487c6",
+    "size": 691546,
+    "versionCode": 1
+  }
+}
